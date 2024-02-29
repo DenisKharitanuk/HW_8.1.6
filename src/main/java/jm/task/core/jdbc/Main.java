@@ -1,5 +1,8 @@
 package jm.task.core.jdbc;
 
+import jm.task.core.jdbc.service.UserService;
+import jm.task.core.jdbc.service.UserServiceImpl;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,6 +13,8 @@ public class Main {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/mysql";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "1675";
+
+    private static final UserService USER_SERVICE= new UserServiceImpl();
 
     public Connection getCOnnection() {
         Connection connection = null;
@@ -28,7 +33,16 @@ public class Main {
 
 
     public static void main(String[] args) {
-        // реализуйте алгоритм здесь
-        System.out.println("ddd ");
+   USER_SERVICE.cleanUsersTable();
+   USER_SERVICE.saveUser("Den","Landlord Fon Table", (byte) 30);
+   USER_SERVICE.saveUser("Ivan","Maslakov", (byte) 40);
+   USER_SERVICE.saveUser("Tarxyn","Bards Fon BotomInternet", (byte) 32);
+   USER_SERVICE.saveUser("Kyril","Sigary", (byte) 27);
+   USER_SERVICE.getAllUsers();
+   USER_SERVICE.cleanUsersTable();
+   USER_SERVICE.dropUsersTable();
+
+
+
     }
 }
