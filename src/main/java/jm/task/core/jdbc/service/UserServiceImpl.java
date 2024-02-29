@@ -30,7 +30,9 @@ public class UserServiceImpl implements UserService {
 
     public List<User> getAllUsers() {
         List<User> users = userDao.getAllUsers();
-
+        for (User u : users) {
+            System.out.println(u);
+        }
         return users;
     }
 
